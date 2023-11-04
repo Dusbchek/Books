@@ -65,11 +65,18 @@ export default function SearcButton() {
     }, []);
 
     const handleInputChange = (event) => {
-        setSearch(event.target.value);
-        const results = bookData.filter(book =>
-            book.name.toLowerCase().includes(search.toLowerCase())
-        );
-        setSearchResults(results);
+
+        if (event.target.value != "") {
+            setSearch(event.target.value);
+            const results = bookData.filter(book =>
+                book.name.toLowerCase().includes(search.toLowerCase())
+            );
+            setSearchResults(results);
+        }
+        else {
+            setSearchResults([]);
+        }
+
     }
     return (
         <>
@@ -110,16 +117,16 @@ export default function SearcButton() {
                         {searchResults && searchResults.length > 0 ? (
                             searchResults.map((book) => (
                                 <>
-                                <Link
-                                    href={`/product/${book.id}`} 
-                                    key={book.id}
-                                    className='hover:text-sky-400'
-                                    onClick={() => setShow(false)}
-                                >
-                                    {book.name}
-                                </Link>
-                                <br/>
-                                <br/>
+                                    <Link
+                                        href={`/product/${book.id}`}
+                                        key={book.id}
+                                        className='hover:text-sky-400'
+                                        onClick={() => setShow(false)}
+                                    >
+                                        {book.name}
+                                    </Link>
+                                    <br />
+                                    <br />
                                 </>
                             ))
                         ) : (

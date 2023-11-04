@@ -1,10 +1,6 @@
 "use client";
 
 import AddToCart from '@/components/AddToCart'
-import ProductRate from '@/components/ProductRate'
-import { data } from '@/utils/data'
-import Image from 'next/image'
-import Link from 'next/link'
 import React, { useState, useEffect } from "react";
 import DataNum from "../../data3" 
 export default function ProductDetailPage({ params: { id } }) {
@@ -122,6 +118,7 @@ export default function ProductDetailPage({ params: { id } }) {
                 {books && books.length > 0 ? (
         books.map((product) => (
           <AddToCart
+          key={product.id}
           showQty={true}
           product={product}
           increasePerClick={true}
@@ -129,7 +126,7 @@ export default function ProductDetailPage({ params: { id } }) {
         />
         ))
       ) : (
-        <p>No hay productos disponibles.</p>
+        <p>Sin disponibilidad.</p>
       )}
          
    
